@@ -18,26 +18,34 @@ struct ContentView: View {
         VStack(alignment: .center, content: {
             let lists = appLists.saveLists
             List {
-                ForEach(lists, content: { list in
+                ForEach(lists.indices, id: \.self, content: { index in
+                    let list = lists[index]
                     Button(action: {
                         if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                            let url = URL(string: encodeLink) {
                             if url.scheme == "https" {
                                 selecteList = list
                                 isWebView = true
+                                
                             } else {
                                 UIApplication.shared.open(url)
+                            }
+                            
+                            if let realmId = list.realmId {
+                                appLists.saveLists[index].isChecked = true
+                                RM.updateIsCheck(id: "\(realmId)", isChecked: true)
                             }
                         }
                     }, label: {
                         Text(list.title)
                     })
                     .disabled(list.isChecked)
-                    .foregroundStyle(Color.init(hex: list.isChecked ? "#eeeeee" : "#222222"))
+                    .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
                     
                 })
                 .onDelete(perform: delete)
             }
+            
             Spacer()
             
             Button("추가하기") {
@@ -49,7 +57,6 @@ struct ContentView: View {
                 AppListView(appLists: appLists)
             })
         }).onAppear {
-//            RM.deleteAll()
             appLists.getSaveLists()
         }
         .sheet(item: $selecteList, content: { list in
@@ -76,5 +83,9 @@ struct ContentView: View {
             
             appLists.saveLists.remove(atOffsets: offsets)
         }
+    }
+    
+    func check(item: AppList) {
+        
     }
 }

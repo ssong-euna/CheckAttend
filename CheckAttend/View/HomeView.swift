@@ -18,7 +18,6 @@ struct HomeView: View {
                 
                 ContentView()
             })
-            .padding()
         })
     }
 }

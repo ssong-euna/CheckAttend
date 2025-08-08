@@ -22,6 +22,7 @@ final class ListViewModel: ObservableObject {
                 if let saveDate = objc.date,
                    !(Calendar.current.isDate(saveDate, inSameDayAs: Date())) {
                     isChecked = false
+                    RM.updateIsCheck(id: "\(objc.id)", isChecked: false)
                 }
                 
                 saveLists.append(AppList(realmId: objc.id,
@@ -51,13 +52,18 @@ final class ListViewModel: ObservableObject {
                     isChecked: false),
             
             AppList(realmId: nil,
-                    title: "KT",
-                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1084&imageurl=https%3A%2F%2Fapp.membership.kt.com%2Feventpage%2Fevn1084%2Fsns_banner.png%3F0505&closeconfirm=&login=Y&snstype=etc",
+                    title: "롯데면세점",
+                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1050757",
                     isChecked: false),
             
             AppList(realmId: nil,
-                    title: "롯데면세점",
-                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1050757",
+                    title: "신라아이파크면세점",
+                    link: "https://m.shillaipark.com/estore/kr/ko/event/eventView?eventId=E57853",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "KT",
+                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1084&imageurl=https%3A%2F%2Fapp.membership.kt.com%2Feventpage%2Fevn1084%2Fsns_banner.png%3F0505&closeconfirm=&login=Y&snstype=etc",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -76,13 +82,53 @@ final class ListViewModel: ObservableObject {
                     isChecked: false),
         
             AppList(realmId: nil,
-                    title: "키움",
-                    link: "heromts://applink?code=&menu=4950&from=",
+                    title: "모니모",
+                    link: "monimopay://",
                     isChecked: false),
         
             AppList(realmId: nil,
-                    title: "키움",
-                    link: "heromts://applink?code=&menu=4950&from=",
+                    title: "KBPay",
+                    link: "kb-acp://",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "국민은행",
+                    link: "kbbank://",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "토스",
+                    link: "supertoss://",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "카카오뱅크",
+                    link: "https://kakaobank.onelink.me/0qMi/ysxkqbud",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "카카오페이",
+                    link: "https://link.kakaopay.com/_/NY6a9yS",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "하나멤버스월렛",
+                    link: "hanawalletmembers://",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "네이버페이",
+                    link: "https://point.pay.naver.com/main?focus=pp&payapptoolbar=true&closeall=true&from=share_mission",
+                    isChecked: false),
+        
+            AppList(realmId: nil,
+                    title: "해피포인트",
+                    link: "happypointcard://deeplink?",
+                    isChecked: false),
+        
+            AppList(realmId: nil,
+                    title: "신세계포인트",
+                    link: "https://preview.page.link/shinsegaepointapp.page.link/R6GT",
                     isChecked: false)]
         
         let links = Set(saveLists.map { $0.link })

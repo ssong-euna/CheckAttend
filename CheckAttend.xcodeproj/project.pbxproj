@@ -22,6 +22,7 @@
 		CF9906BA2E43388B00B73F19 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906B92E43388400B73F19 /* Color+Extension.swift */; };
 		CF9906BE2E447C1900B73F19 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906BD2E447C1900B73F19 /* WebView.swift */; };
 		CFD222202E45B881008E30B3 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD2221F2E45B881008E30B3 /* SafariWebView.swift */; };
+		CFD222222E45E2DC008E30B3 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFD222212E45E2DC008E30B3 /* manifest.plist */; };
 		FA97BBB18D1B0B8A1D499026 /* Pods_CheckAttend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E007314C4FBB2D7D5371BF /* Pods_CheckAttend.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		CF9906BD2E447C1900B73F19 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CF9906BF2E448FD400B73F19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CFD2221F2E45B881008E30B3 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
+		CFD222212E45E2DC008E30B3 /* manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				CF00420F2E42E5DE00AD169A /* Products */,
 				BC6B86EFB7C437575656F441 /* Pods */,
 				E506193E68E6418393DB75CC /* Frameworks */,
+				CFD222212E45E2DC008E30B3 /* manifest.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFD222222E45E2DC008E30B3 /* manifest.plist in Resources */,
 				CF0042C92E42F2CE00AD169A /* Preview Assets.xcassets in Resources */,
 				CF0042CA2E42F2CE00AD169A /* Assets.xcassets in Resources */,
 			);

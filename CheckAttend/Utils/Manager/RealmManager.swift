@@ -44,10 +44,12 @@ class RealmManager: NSObject {
         return objs
     }
     
-    func update(obj: Object) {
+    func updateIsCheck(id: String, isChecked: Bool) {
         do {
             try realm?.write {
-                realm?.add(obj, update: .modified)
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                    obj.isChecked = isChecked
+                }
             }
         } catch {
             print("update fail")

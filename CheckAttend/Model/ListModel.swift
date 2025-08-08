@@ -12,6 +12,6 @@ struct AppList: Codable, Equatable, Hashable, Identifiable {
     let realmId: Int?
     let title: String
     let link: String
-    let isChecked: Bool
+    var isChecked: Bool
 }
 
