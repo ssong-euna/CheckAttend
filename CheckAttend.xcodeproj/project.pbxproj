@@ -19,10 +19,10 @@
 		CF0042D32E42F2CE00AD169A /* CheckAttendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0042C72E42F2CE00AD169A /* CheckAttendApp.swift */; };
 		CF0042D62E42FE2700AD169A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0042D52E42FE2700AD169A /* RealmManager.swift */; };
 		CF0042D82E43011800AD169A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0042D72E43011800AD169A /* Constants.swift */; };
+		CF6B87882E49C4E100AD0E2B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF6B87872E49C4E100AD0E2B /* manifest.plist */; };
 		CF9906BA2E43388B00B73F19 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906B92E43388400B73F19 /* Color+Extension.swift */; };
 		CF9906BE2E447C1900B73F19 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906BD2E447C1900B73F19 /* WebView.swift */; };
 		CFD222202E45B881008E30B3 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD2221F2E45B881008E30B3 /* SafariWebView.swift */; };
-		CFD222222E45E2DC008E30B3 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFD222212E45E2DC008E30B3 /* manifest.plist */; };
 		FA97BBB18D1B0B8A1D499026 /* Pods_CheckAttend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E007314C4FBB2D7D5371BF /* Pods_CheckAttend.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,11 +43,11 @@
 		CF0042C72E42F2CE00AD169A /* CheckAttendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAttendApp.swift; sourceTree = "<group>"; };
 		CF0042D52E42FE2700AD169A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		CF0042D72E43011800AD169A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CF6B87872E49C4E100AD0E2B /* manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 		CF9906B92E43388400B73F19 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		CF9906BD2E447C1900B73F19 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CF9906BF2E448FD400B73F19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CFD2221F2E45B881008E30B3 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
-		CFD222212E45E2DC008E30B3 /* manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 				CF00420F2E42E5DE00AD169A /* Products */,
 				BC6B86EFB7C437575656F441 /* Pods */,
 				E506193E68E6418393DB75CC /* Frameworks */,
-				CFD222212E45E2DC008E30B3 /* manifest.plist */,
+				CF6B87872E49C4E100AD0E2B /* manifest.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -253,7 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFD222222E45E2DC008E30B3 /* manifest.plist in Resources */,
+				CF6B87882E49C4E100AD0E2B /* manifest.plist in Resources */,
 				CF0042C92E42F2CE00AD169A /* Preview Assets.xcassets in Resources */,
 				CF0042CA2E42F2CE00AD169A /* Assets.xcassets in Resources */,
 			);
@@ -453,7 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CheckAttend/Preview Content\"";
@@ -463,6 +463,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CheckAttend/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "출석체크";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -477,7 +478,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sea.attend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "sea test attend";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "sea test attend_dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -505,6 +506,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CheckAttend/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "출석체크";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
