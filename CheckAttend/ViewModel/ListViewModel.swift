@@ -103,7 +103,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "카카오뱅크",
-                    link: "https://kakaobank.onelink.me/0qMi/ysxkqbud",
+                    link: "kakaobank://open_url?type=event&title=%EC%9D%B4%EB%B2%A4%ED%8A%B8&url=https%3A%2F%2Fevent.kakaobank.com%2Fp%2Fox",
                     isChecked: false),
             
             AppList(realmId: nil,
