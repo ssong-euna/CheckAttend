@@ -56,6 +56,18 @@ class RealmManager: NSObject {
         }
     }
     
+    func updateDate(id: String, date: Date) {
+        do {
+            try realm?.write {
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                    obj.date = date
+                }
+            }
+        } catch {
+            print("update fail")
+        }
+    }
+    
     func delete(obj: Object) {
         do {
             try realm?.write {
@@ -87,23 +99,6 @@ class RealmManager: NSObject {
 
 // MARK: PushData
 extension RealmManager {
-    
-    // [F-2262] 푸시박스 Realm 사용하여 적재
-    func parsePushData(title: String, link: String, isChecked: Bool) -> ListRealmModel? {
-        var listModel: ListRealmModel
-        
-        // 저장 시간(받아오는 시간정보가 없어, 저장할 때 시간 기록)
-        let date = Date().toKST()
-        let day  = date.removeTime()
-        
-        listModel = ListRealmModel(id: self.incrementaPushBoxID(),
-                                   title: title,
-                                   link: link,
-                                   isChecked: isChecked,
-                                   date: day)
-        
-        return listModel
-    }
     
     func insertPushData(list: ListRealmModel) {
         self.create(obj: list)
