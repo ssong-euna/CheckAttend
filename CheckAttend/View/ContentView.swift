@@ -34,6 +34,7 @@ struct ContentView: View {
                             if let realmId = list.realmId {
                                 appLists.saveLists[index].isChecked = true
                                 RM.updateIsCheck(id: "\(realmId)", isChecked: true)
+                                RM.updateDate(id: "\(realmId)", date: Date.now)
                             }
                         }
                     }, label: {
@@ -61,18 +62,9 @@ struct ContentView: View {
         }
         .sheet(item: $selecteList, content: { list in
             if let url = URL(string: list.link) {
-                //                WebView(url: url)
                 SafariWebView(url: url)
             }
         })
-            
-//                .navigationDestination(isPresented: $isWebView) {
-//                    if let selecteList = selecteList,
-//                       let url = URL(string: selecteList.link) {
-//        //                WebView(url: url)
-//                        SafariWebView(url: url)
-//                    }
-//                }
     }
     
     func delete(at offsets: IndexSet) {
@@ -83,9 +75,5 @@ struct ContentView: View {
             
             appLists.saveLists.remove(atOffsets: offsets)
         }
-    }
-    
-    func check(item: AppList) {
-        
     }
 }
