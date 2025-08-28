@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
+    
     @StateObject var appLists = ListViewModel()
     @State private var isAdd: Bool = false
     @State private var isWebView: Bool = false
     
     @State private var selecteList: AppList? = nil
+    
+    @Binding var todayDate: Date
+    @Binding var refreshId: UUID
     
     var body: some View {
         VStack(alignment: .center, content: {
@@ -40,11 +45,18 @@ struct ContentView: View {
                     }, label: {
                         Text(list.title)
                     })
-                    .disabled(list.isChecked)
                     .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
                     
                 })
                 .onDelete(perform: delete)
+            }
+            .onChange(of: scenePhase) { oldValue, newValue in
+                if newValue == .active {
+                    if checkDate() {
+                        todayDate = Date()
+                        refreshId = UUID()
+                    }
+                }
             }
             
             Spacer()
@@ -74,6 +86,14 @@ struct ContentView: View {
             RM.delete(obj: obj)
             
             appLists.saveLists.remove(atOffsets: offsets)
+        }
+    }
+    
+    func checkDate() ->  Bool {
+        if Calendar.current.isDate(todayDate, inSameDayAs: Date()) {
+            return false
+        } else {
+            return true
         }
     }
 }

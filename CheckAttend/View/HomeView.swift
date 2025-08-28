@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var today = Date()
+    @State var refreshId = UUID()
+    
     var body: some View {
         NavigationStack(root: {
             VStack(alignment: .center, content: {
-                Text(Date().nowTime())
+                Text(today.nowTime())
                     .padding()
                 
                 Spacer()
                 
-                ContentView()
+                ContentView(todayDate: $today, refreshId: $refreshId)
             })
+            .id(refreshId)
         })
     }
 }
