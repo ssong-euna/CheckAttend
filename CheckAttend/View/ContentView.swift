@@ -25,25 +25,33 @@ struct ContentView: View {
             List {
                 ForEach(lists.indices, id: \.self, content: { index in
                     let list = lists[index]
-                    Button(action: {
-                        if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                           let url = URL(string: encodeLink) {
-                            if url.scheme == "https" {
-                                selecteList = list
-                                isWebView = true
+                    Toggle(isOn: $appLists.saveLists[index].isChecked, label: {
+                        Button(action: {
+                            if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                               let url = URL(string: encodeLink) {
+                                if url.scheme == "https" {
+                                    selecteList = list
+                                    isWebView = true
+                                    
+                                } else {
+                                    UIApplication.shared.open(url)
+                                }
                                 
-                            } else {
-                                UIApplication.shared.open(url)
+                                if let realmId = list.realmId {
+                                    appLists.saveLists[index].isChecked = true
+                                    RM.updateIsCheck(id: "\(realmId)", isChecked: true)
+                                    RM.updateDate(id: "\(realmId)", date: Date.now)
+                                }
                             }
-                            
-                            if let realmId = list.realmId {
-                                appLists.saveLists[index].isChecked = true
-                                RM.updateIsCheck(id: "\(realmId)", isChecked: true)
-                                RM.updateDate(id: "\(realmId)", date: Date.now)
-                            }
+                        }, label: {
+                            Text(list.title)
+                        })
+                    })
+                    .onChange(of: appLists.saveLists[index].isChecked, { oldValue, newValue in
+                        if let realmId = list.realmId {
+                            RM.updateIsCheck(id: "\(realmId)", isChecked: newValue)
+                            RM.updateDate(id: "\(realmId)", date: Date.now)
                         }
-                    }, label: {
-                        Text(list.title)
                     })
                     .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
                     

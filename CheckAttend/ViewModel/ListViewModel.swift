@@ -43,7 +43,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "마이홈플러스",
-                    link: "myhomeplus://strUrl=/event/atnd?evntNo=7238",
+                    link: "myhomeplus://strUrl=/event/atnd?evntNo=7241",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -83,7 +83,7 @@ final class ListViewModel: ObservableObject {
         
             AppList(realmId: nil,
                     title: "모니모",
-                    link: "monimopay://",
+                    link: "monimoapp://adbrix?",
                     isChecked: false),
         
             AppList(realmId: nil,
