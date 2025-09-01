@@ -38,7 +38,7 @@ final class ListViewModel: ObservableObject {
         let lists = [
             AppList(realmId: nil,
                     title: "홈플러스",
-                    link: "homeplus://webUrl?url=https://mfront.homeplus.co.kr/promotion/2025/08/attendance",
+                    link: "homeplus://webUrl?url=https://mfront.homeplus.co.kr/promotion/2025/09/attendance",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -53,7 +53,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "롯데면세점",
-                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1050757",
+                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1051143",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -63,7 +63,8 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "KT",
-                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1084&imageurl=https%3A%2F%2Fapp.membership.kt.com%2Feventpage%2Fevn1084%2Fsns_banner.png%3F0505&closeconfirm=&login=Y&snstype=etc",
+                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1067",
+//                    &imageurl=https%3A%2F%2Fapp.membership.kt.com%2Feventpage%2Fevn1084%2Fsns_banner.png%3F0505&closeconfirm=&login=Y&snstype=etc",
                     isChecked: false),
             
             AppList(realmId: nil,
