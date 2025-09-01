@@ -23,42 +23,55 @@ struct ContentView: View {
         VStack(alignment: .center, content: {
             let lists = appLists.saveLists
             List {
-                ForEach(lists.indices, id: \.self, content: { index in
-                    let list = lists[index]
-                    Toggle(isOn: $appLists.saveLists[index].isChecked, label: {
-                        Button(action: {
-                            if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                               let url = URL(string: encodeLink) {
-                                if url.scheme == "https" {
-                                    selecteList = list
-                                    isWebView = true
+                Section {
+                    ForEach(lists.indices, id: \.self, content: { index in
+                        let list = lists[index]
+                        Toggle(isOn: $appLists.saveLists[index].isChecked, label: {
+                            Button(action: {
+                                if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                   let url = URL(string: encodeLink) {
+                                    if url.scheme == "https" {
+                                        selecteList = list
+                                        isWebView = true
+                                        
+                                    } else {
+                                        UIApplication.shared.open(url)
+                                    }
                                     
-                                } else {
-                                    UIApplication.shared.open(url)
+                                    if let realmId = list.realmId {
+                                        appLists.saveLists[index].isChecked = true
+                                        RM.updateIsCheck(id: "\(realmId)", isChecked: true)
+                                        RM.updateDate(id: "\(realmId)", date: Date.now)
+                                    }
                                 }
-                                
-                                if let realmId = list.realmId {
-                                    appLists.saveLists[index].isChecked = true
-                                    RM.updateIsCheck(id: "\(realmId)", isChecked: true)
-                                    RM.updateDate(id: "\(realmId)", date: Date.now)
-                                }
-                            }
-                        }, label: {
-                            Text(list.title)
+                            }, label: {
+                                Text(list.title)
+                            })
                         })
+                        .onChange(of: appLists.saveLists[index].isChecked, { oldValue, newValue in
+                            if let realmId = list.realmId {
+                                RM.updateIsCheck(id: "\(realmId)", isChecked: newValue)
+                                RM.updateDate(id: "\(realmId)", date: Date.now)
+                            }
+                        })
+                        .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
+                        
                     })
-                    .onChange(of: appLists.saveLists[index].isChecked, { oldValue, newValue in
-                        if let realmId = list.realmId {
-                            RM.updateIsCheck(id: "\(realmId)", isChecked: newValue)
-                            RM.updateDate(id: "\(realmId)", date: Date.now)
-                        }
+                    .onDelete(perform: delete)
+                    .onMove(perform: move)
+                } header: {
+                    Button(action: {
+                        RM.deleteAll()
+                        refreshId = UUID()
+                    }, label: {
+                        Text("모두 삭제")
+                            .padding(.bottom, 10)
                     })
-                    .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
-                    
-                })
-                .onDelete(perform: delete)
-                .onMove(perform: move)
+                    .foregroundStyle(.red)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                }
             }
+            .listStyle(.insetGrouped)
             .onChange(of: scenePhase) { oldValue, newValue in
                 if newValue == .active {
                     if checkDate() {
