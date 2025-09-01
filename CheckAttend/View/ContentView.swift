@@ -24,7 +24,7 @@ struct ContentView: View {
             let lists = appLists.saveLists
             List {
                 Section {
-                    ForEach(lists.indices, id: \.self, content: { index in
+                    ForEach(Array(lists.enumerated()), id: \.element.id, content: { index, list in
                         let list = lists[index]
                         Toggle(isOn: $appLists.saveLists[index].isChecked, label: {
                             Button(action: {
