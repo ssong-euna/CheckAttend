@@ -6,10 +6,19 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct HomeView: View {
     @State var today = Date()
     @State var refreshId = UUID()
+    
+    init() {
+        let config = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { _, _ in }
+        )
+        Realm.Configuration.defaultConfiguration = config
+    }
     
     var body: some View {
         NavigationStack(root: {

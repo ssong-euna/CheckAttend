@@ -16,11 +16,13 @@ struct AppListView: View {
             let lists = appLists.serverLists
             List(lists, id: \.self) { list in
                 Button(action: {
-                    RM.insertPushData(list: ListRealmModel(id: RM.incrementaPushBoxID(),
-                                                           title: list.title,
-                                                           link: list.link,
-                                                           isChecked: false,
-                                                           date: Date.now))
+                    let id = RM.incrementaPushBoxID()
+                    RM.insertData(list: ListRealmModel(id: id,
+                                                       title: list.title,
+                                                       link: list.link,
+                                                       isChecked: false,
+                                                       date: Date.now,
+                                                       index: id))
                     
                     dismiss()
                 }, label: {

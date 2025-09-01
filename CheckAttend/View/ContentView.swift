@@ -57,6 +57,7 @@ struct ContentView: View {
                     
                 })
                 .onDelete(perform: delete)
+                .onMove(perform: move)
             }
             .onChange(of: scenePhase) { oldValue, newValue in
                 if newValue == .active {
@@ -94,6 +95,19 @@ struct ContentView: View {
             RM.delete(obj: obj)
             
             appLists.saveLists.remove(atOffsets: offsets)
+        }
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        appLists.saveLists.move(fromOffsets: source, toOffset: destination)
+        
+        for (idx, list) in appLists.saveLists.enumerated() {
+            RM.update(obj: ListRealmModel(id: list.realmId ?? 0,
+                                          title: list.title,
+                                          link: list.link,
+                                          isChecked: false,
+                                          date: Date.now,
+                                          index: idx))
         }
     }
     

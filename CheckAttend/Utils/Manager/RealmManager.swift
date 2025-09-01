@@ -11,7 +11,7 @@ import RealmSwift
 class RealmManager: NSObject {
     static let shared = RealmManager()
     
-    private var realm: Realm? = {
+    var realm: Realm? = {
         do {
             return try Realm()
         } catch {
@@ -32,40 +32,28 @@ class RealmManager: NSObject {
         }
     }
     
-    func read<Element: RealmFetchable>(obj: Element.Type, filter: String) -> Results<Element>? {
-        let data = realm?.objects(obj).filter(filter)
+    func update(obj: Object) {
+        do {
+            try realm?.write {
+                realm?.add(obj, update: .modified)
+            }
+        } catch {
+            print("create fail")
+        }
+    }
+    
+    func read<Element: RealmFetchable>(obj: Element.Type, filter: String = "", keyPath: String = "") -> Results<Element>? {
+        var data = realm?.objects(obj)
+        
+        if !filter.isEmpty {
+            data = data?.filter(filter)
+        }
+        
+        if !keyPath.isEmpty {
+            data = data?.sorted(by: [RealmSwift.SortDescriptor(keyPath: keyPath, ascending: true)])
+        }
         
         return data
-    }
-    
-    func readListRealmModel() -> Results<ListRealmModel>? {
-        let objs = realm?.objects(ListRealmModel.self)
-        
-        return objs
-    }
-    
-    func updateIsCheck(id: String, isChecked: Bool) {
-        do {
-            try realm?.write {
-                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
-                    obj.isChecked = isChecked
-                }
-            }
-        } catch {
-            print("update fail")
-        }
-    }
-    
-    func updateDate(id: String, date: Date) {
-        do {
-            try realm?.write {
-                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
-                    obj.date = date
-                }
-            }
-        } catch {
-            print("update fail")
-        }
     }
     
     func delete(obj: Object) {
@@ -100,13 +88,8 @@ class RealmManager: NSObject {
 // MARK: PushData
 extension RealmManager {
     
-    func insertPushData(list: ListRealmModel) {
+    func insertData(list: ListRealmModel) {
         self.create(obj: list)
-    }
-    
-    // MARK: Delete
-    func deletePushData(list: ListRealmModel) {
-        self.delete(obj: list)
     }
     
     func incrementaPushBoxID() -> Int {
@@ -114,6 +97,48 @@ extension RealmManager {
                 return retNext + 1
         } else {
             return 0
+        }
+    }
+    
+    func readListRealmModel() -> Results<ListRealmModel>? {
+        let objs = RM.read(obj: ListRealmModel.self, keyPath: "index")
+        
+        return objs
+    }
+    
+    func updateIsCheck(id: String, isChecked: Bool) {
+        do {
+            try realm?.write {
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                    obj.isChecked = isChecked
+                }
+            }
+        } catch {
+            print("update fail")
+        }
+    }
+    
+    func updateDate(id: String, date: Date) {
+        do {
+            try realm?.write {
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                    obj.date = date
+                }
+            }
+        } catch {
+            print("update fail")
+        }
+    }
+    
+    func updateLink(id: String, link: String) {
+        do {
+            try realm?.write {
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                    obj.link = link
+                }
+            }
+        } catch {
+            print("update Fail")
         }
     }
 }
