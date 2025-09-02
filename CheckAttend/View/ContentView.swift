@@ -92,7 +92,9 @@ struct ContentView: View {
                 AppListView(appLists: appLists)
             })
         }).onAppear {
-            appLists.getSaveLists()
+            appLists.getServerLists(completion: {
+                appLists.getSaveLists()
+            })
         }
         .sheet(item: $selecteList, content: { list in
             if let url = URL(string: list.link) {

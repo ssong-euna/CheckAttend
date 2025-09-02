@@ -13,8 +13,10 @@ struct AppListView: View {
     
     var body: some View {
         VStack(alignment: .center, content: {
-            let lists = appLists.serverLists
-            List(lists, id: \.self) { list in
+            let links = Set(appLists.saveLists.map { $0.link })
+            let serverLists = appLists.serverLists.filter { !links.contains($0.link) }
+            
+            List(serverLists, id: \.self) { list in
                 Button(action: {
                     let id = RM.incrementaPushBoxID()
                     RM.insertData(list: ListRealmModel(id: id,
@@ -30,8 +32,6 @@ struct AppListView: View {
                 })
                 .foregroundStyle(Color.init(hex: "#222222"))
             }
-        }).onAppear {
-            appLists.getServerLists()
-        }
+        })
     }
 }

@@ -18,6 +18,7 @@ final class ListViewModel: ObservableObject {
             
             for objc in objcs {
                 var isChecked = objc.isChecked
+                var link = objc.link
                 
                 if let saveDate = objc.date,
                    !(Calendar.current.isDate(saveDate, inSameDayAs: Date())) {
@@ -25,15 +26,21 @@ final class ListViewModel: ObservableObject {
                     RM.updateIsCheck(id: "\(objc.id)", isChecked: false)
                 }
                 
+                // 변경된 link 대입
+                let mapLists = Dictionary(uniqueKeysWithValues: serverLists.map { ($0.title, $0.link) })
+                if let newLink = mapLists[objc.title] {
+                    link = newLink
+                }
+                
                 saveLists.append(AppList(realmId: objc.id,
                                          title: objc.title,
-                                         link: objc.link,
+                                         link: link,
                                          isChecked: isChecked))
             }
         }
     }
 
-    func getServerLists() {
+    func getServerLists(completion: (() -> Void)? = nil) {
         // 서버 호출 또는 더미 데이터
         let lists = [
             AppList(realmId: nil,
@@ -64,7 +71,6 @@ final class ListViewModel: ObservableObject {
             AppList(realmId: nil,
                     title: "KT",
                     link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1067",
-//                    &imageurl=https%3A%2F%2Fapp.membership.kt.com%2Feventpage%2Fevn1084%2Fsns_banner.png%3F0505&closeconfirm=&login=Y&snstype=etc",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -132,7 +138,7 @@ final class ListViewModel: ObservableObject {
                     link: "https://preview.page.link/shinsegaepointapp.page.link/R6GT",
                     isChecked: false)]
         
-        let links = Set(saveLists.map { $0.link })
-        serverLists = lists.filter { !links.contains($0.link) }
+        serverLists = lists
+        completion?()
     }
 }
