@@ -136,6 +136,10 @@ final class ListViewModel: ObservableObject {
             AppList(realmId: nil,
                     title: "신세계포인트",
                     link: "https://preview.page.link/shinsegaepointapp.page.link/R6GT",
+                    isChecked: false),
+            AppList(realmId: nil,
+                    title: "신라면세점",
+                    link: "https://m.shilladfs.com/estore/kr/ko/event/eventView?eventId=E79494",
                     isChecked: false)]
         
         serverLists = lists
