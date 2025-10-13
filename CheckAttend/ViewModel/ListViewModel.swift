@@ -45,12 +45,7 @@ final class ListViewModel: ObservableObject {
         let lists = [
             AppList(realmId: nil,
                     title: "홈플러스",
-                    link: "homeplus://webUrl?url=https://mfront.homeplus.co.kr/promotion/2025/09/attendance",
-                    isChecked: false),
-            
-            AppList(realmId: nil,
-                    title: "마이홈플러스",
-                    link: "myhomeplus://strUrl=/event/atnd?evntNo=7241",
+                    link: "homeplus://webUrl?url=https://mfront.homeplus.co.kr/promotion/2025/10/attendance",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -60,7 +55,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "롯데면세점",
-                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1051143",
+                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1051495",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -70,12 +65,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "KT",
-                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1067",
-                    isChecked: false),
-            
-            AppList(realmId: nil,
-                    title: "핫핑",
-                    link: "https://m.hotping.co.kr/attend/stamp.html",
+                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1084",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -137,9 +127,10 @@ final class ListViewModel: ObservableObject {
                     title: "신세계포인트",
                     link: "https://preview.page.link/shinsegaepointapp.page.link/R6GT",
                     isChecked: false),
+            
             AppList(realmId: nil,
                     title: "신라면세점",
-                    link: "https://m.shilladfs.com/estore/kr/ko/event/eventView?eventId=E79494",
+                    link: "https://m.shilladfs.com/estore/kr/ko/event/eventView?eventId=E79722",
                     isChecked: false)]
         
         serverLists = lists
