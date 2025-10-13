@@ -179,7 +179,7 @@ final class ListViewModel: ObservableObject {
         
             AppList(realmId: nil,
                     title: "국민은행",
-                    link: "kbbank://",
+                    link: "kbbank://call?cmd=move_to&id=web&url=/mquics?page=D016793&urlparam=",
                     isChecked: false),
             
             AppList(realmId: nil,
