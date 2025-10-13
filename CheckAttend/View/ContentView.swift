@@ -166,17 +166,34 @@ struct ContentView: View {
     }
     
     func move(from source: IndexSet, to destination: Int) {
-        appLists.saveLists.move(fromOffsets: source, toOffset: destination)
-        
-        for (idx, list) in appLists.saveLists.enumerated() {
-            RM.update(obj: ListRealmModel(id: list.realmId ?? 0,
-                                          title: list.title,
-                                          link: list.link,
-                                          isChecked: false,
-                                          date: Date.now,
-                                          index: idx,
-                                          type: optionType))
+        switch optionType {
+        case .attend:
+            appLists.saveLists.move(fromOffsets: source, toOffset: destination)
+            
+            for (idx, list) in appLists.saveLists.enumerated() {
+                RM.update(obj: ListRealmModel(id: list.realmId ?? 0,
+                                              title: list.title,
+                                              link: list.link,
+                                              isChecked: false,
+                                              date: Date.now,
+                                              index: idx,
+                                              type: optionType))
+            }
+            
+        case .walk:
+            appLists.walkSaveLists.move(fromOffsets: source, toOffset: destination)
+            
+            for (idx, list) in appLists.walkSaveLists.enumerated() {
+                RM.update(obj: ListRealmModel(id: list.realmId ?? 0,
+                                              title: list.title,
+                                              link: list.link,
+                                              isChecked: false,
+                                              date: Date.now,
+                                              index: idx,
+                                              type: optionType))
+            }
         }
+        
     }
     
     func checkDate() ->  Bool {
