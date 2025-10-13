@@ -153,11 +153,15 @@ struct ContentView: View {
     
     func delete(at offsets: IndexSet) {
         if let index = offsets.first,
-           let realmId = appLists.saveLists[index].realmId,
+           let realmId = optionType == .attend ? appLists.saveLists[index].realmId : appLists.walkSaveLists[index].realmId,
            let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(realmId) && type == '\(optionType.rawValue)'")?.first {
             RM.delete(obj: obj)
             
-            appLists.saveLists.remove(atOffsets: offsets)
+            if optionType == .attend {
+                appLists.saveLists.remove(atOffsets: offsets)
+            } else if optionType == .walk {
+                appLists.walkSaveLists.remove(atOffsets: offsets)
+            }
         }
     }
     
