@@ -15,8 +15,9 @@ class ListRealmModel: Object {
     @Persisted var isChecked: Bool = false
     @Persisted var date: Date?
     @Persisted var index: Int = 0
+    @Persisted var type: String = Options.attend.rawValue
     
-    convenience init(id: Int, title: String, link: String, isChecked: Bool, date: Date?, index: Int) {
+    convenience init(id: Int, title: String, link: String, isChecked: Bool, date: Date?, index: Int, type: Options) {
         self.init()
         
         self.id = id
@@ -25,5 +26,6 @@ class ListRealmModel: Object {
         self.isChecked = isChecked
         self.date = date
         self.index = index
+        self.type = type.rawValue
     }
 }

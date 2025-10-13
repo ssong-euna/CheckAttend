@@ -100,16 +100,16 @@ extension RealmManager {
         }
     }
     
-    func readListRealmModel() -> Results<ListRealmModel>? {
-        let objs = RM.read(obj: ListRealmModel.self, keyPath: "index")
+    func readListRealmModel(type: Options) -> Results<ListRealmModel>? {
+        let objs = RM.read(obj: ListRealmModel.self, filter: "type == '\(type.rawValue)'", keyPath: "index")
         
         return objs
     }
     
-    func updateIsCheck(id: String, isChecked: Bool) {
+    func updateIsCheck(id: String, isChecked: Bool, type: Options) {
         do {
             try realm?.write {
-                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id) && type == '\(type.rawValue)'")?.first {
                     obj.isChecked = isChecked
                 }
             }
@@ -118,10 +118,10 @@ extension RealmManager {
         }
     }
     
-    func updateDate(id: String, date: Date) {
+    func updateDate(id: String, date: Date, type: Options) {
         do {
             try realm?.write {
-                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id) && type == '\(type.rawValue)'")?.first {
                     obj.date = date
                 }
             }
@@ -130,10 +130,10 @@ extension RealmManager {
         }
     }
     
-    func updateLink(id: String, link: String) {
+    func updateLink(id: String, link: String, type: Options) {
         do {
             try realm?.write {
-                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id)")?.first {
+                if let obj = RM.read(obj: ListRealmModel.self, filter: "id == \(id) && type == '\(type.rawValue)'")?.first {
                     obj.link = link
                 }
             }

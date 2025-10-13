@@ -22,6 +22,7 @@
 		CF6B87882E49C4E100AD0E2B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF6B87872E49C4E100AD0E2B /* manifest.plist */; };
 		CF9906BA2E43388B00B73F19 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906B92E43388400B73F19 /* Color+Extension.swift */; };
 		CF9906BE2E447C1900B73F19 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906BD2E447C1900B73F19 /* WebView.swift */; };
+		CFC49BD92E9CB85600DA8B45 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC49BD82E9CB85600DA8B45 /* PickerView.swift */; };
 		CFD222202E45B881008E30B3 /* SafariWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD2221F2E45B881008E30B3 /* SafariWebView.swift */; };
 		FA97BBB18D1B0B8A1D499026 /* Pods_CheckAttend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E007314C4FBB2D7D5371BF /* Pods_CheckAttend.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		CF9906B92E43388400B73F19 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		CF9906BD2E447C1900B73F19 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CF9906BF2E448FD400B73F19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CFC49BD82E9CB85600DA8B45 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		CFD2221F2E45B881008E30B3 /* SafariWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,11 +147,12 @@
 			isa = PBXGroup;
 			children = (
 				CF0042BF2E42F2CE00AD169A /* Units */,
-				CF0042C02E42F2CE00AD169A /* AppListView.swift */,
-				CF0042C12E42F2CE00AD169A /* ContentView.swift */,
 				CF0042C22E42F2CE00AD169A /* HomeView.swift */,
+				CFC49BD82E9CB85600DA8B45 /* PickerView.swift */,
+				CF0042C12E42F2CE00AD169A /* ContentView.swift */,
 				CF9906BD2E447C1900B73F19 /* WebView.swift */,
 				CFD2221F2E45B881008E30B3 /* SafariWebView.swift */,
+				CF0042C02E42F2CE00AD169A /* AppListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				CF0042D62E42FE2700AD169A /* RealmManager.swift in Sources */,
 				CF9906BE2E447C1900B73F19 /* WebView.swift in Sources */,
 				CF0042D22E42F2CE00AD169A /* ListViewModel.swift in Sources */,
+				CFC49BD92E9CB85600DA8B45 /* PickerView.swift in Sources */,
 				CF0042D32E42F2CE00AD169A /* CheckAttendApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

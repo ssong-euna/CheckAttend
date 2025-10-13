@@ -16,49 +16,92 @@ struct ContentView: View {
     
     @State private var selecteList: AppList? = nil
     
+    @Binding var optionType: Options
     @Binding var todayDate: Date
     @Binding var refreshId: UUID
     
     var body: some View {
         VStack(alignment: .center, content: {
-            let lists = appLists.saveLists
+            let lists = optionType == .walk ? appLists.walkSaveLists : appLists.saveLists
+            
             List {
                 Section {
-                    ForEach(Array(lists.enumerated()), id: \.element.id, content: { index, list in
-                        let list = lists[index]
-                        Toggle(isOn: $appLists.saveLists[index].isChecked, label: {
-                            Button(action: {
-                                if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                                   let url = URL(string: encodeLink) {
-                                    if url.scheme == "https" {
-                                        selecteList = list
-                                        isWebView = true
+                    switch optionType {
+                    case .walk:
+                        ForEach(Array(lists.enumerated()), id: \.element.id, content: { index, list in
+                            let list = lists[index]
+                            Toggle(isOn: $appLists.walkSaveLists[index].isChecked, label: {
+                                Button(action: {
+                                    if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                       let url = URL(string: encodeLink) {
+                                        if url.scheme == "https" {
+                                            selecteList = list
+                                            isWebView = true
+                                            
+                                        } else {
+                                            UIApplication.shared.open(url)
+                                        }
                                         
-                                    } else {
-                                        UIApplication.shared.open(url)
+                                        if let realmId = list.realmId {
+                                            appLists.walkSaveLists[index].isChecked = true
+                                            RM.updateIsCheck(id: "\(realmId)", isChecked: true, type: optionType)
+                                            RM.updateDate(id: "\(realmId)", date: Date.now, type: optionType)
+                                        }
                                     }
-                                    
-                                    if let realmId = list.realmId {
-                                        appLists.saveLists[index].isChecked = true
-                                        RM.updateIsCheck(id: "\(realmId)", isChecked: true)
-                                        RM.updateDate(id: "\(realmId)", date: Date.now)
-                                    }
-                                }
-                            }, label: {
-                                Text(list.title)
+                                }, label: {
+                                    Text(list.title)
+                                })
                             })
+                            .onChange(of: appLists.walkSaveLists[index].isChecked, { oldValue, newValue in
+                                if let realmId = list.realmId {
+                                    RM.updateIsCheck(id: "\(realmId)", isChecked: newValue, type: optionType)
+                                    RM.updateDate(id: "\(realmId)", date: Date.now, type: optionType)
+                                }
+                            })
+                            .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
+                            
                         })
-                        .onChange(of: appLists.saveLists[index].isChecked, { oldValue, newValue in
-                            if let realmId = list.realmId {
-                                RM.updateIsCheck(id: "\(realmId)", isChecked: newValue)
-                                RM.updateDate(id: "\(realmId)", date: Date.now)
-                            }
-                        })
-                        .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
+                        .onDelete(perform: delete)
+                        .onMove(perform: move)
                         
-                    })
-                    .onDelete(perform: delete)
-                    .onMove(perform: move)
+                    case .attend:
+                        ForEach(Array(lists.enumerated()), id: \.element.id, content: { index, list in
+                            let list = lists[index]
+                            Toggle(isOn: $appLists.saveLists[index].isChecked, label: {
+                                Button(action: {
+                                    if let encodeLink = list.link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                       let url = URL(string: encodeLink) {
+                                        if url.scheme == "https" {
+                                            selecteList = list
+                                            isWebView = true
+                                            
+                                        } else {
+                                            UIApplication.shared.open(url)
+                                        }
+                                        
+                                        if let realmId = list.realmId {
+                                            appLists.saveLists[index].isChecked = true
+                                            RM.updateIsCheck(id: "\(realmId)", isChecked: true, type: optionType)
+                                            RM.updateDate(id: "\(realmId)", date: Date.now, type: optionType)
+                                        }
+                                    }
+                                }, label: {
+                                    Text(list.title)
+                                })
+                            })
+                            .onChange(of: appLists.saveLists[index].isChecked, { oldValue, newValue in
+                                if let realmId = list.realmId {
+                                    RM.updateIsCheck(id: "\(realmId)", isChecked: newValue, type: optionType)
+                                    RM.updateDate(id: "\(realmId)", date: Date.now, type: optionType)
+                                }
+                            })
+                            .foregroundStyle(Color.init(hex: list.isChecked ? "#999999" : "#222222"))
+                            
+                        })
+                        .onDelete(perform: delete)
+                        .onMove(perform: move)
+                    }
+                    
                 } header: {
                     Button(action: {
                         RM.deleteAll()
@@ -88,12 +131,17 @@ struct ContentView: View {
             }
             .sheet(isPresented: $isAdd, onDismiss: {
                 appLists.getSaveLists()
+                appLists.getWalkSaveLists()
             }, content: {
-                AppListView(appLists: appLists)
+                AppListView(appLists: appLists, optionType: $optionType)
             })
         }).onAppear {
             appLists.getServerLists(completion: {
                 appLists.getSaveLists()
+            })
+            
+            appLists.getWalkServerLists(completion: {
+                appLists.getWalkSaveLists()
             })
         }
         .sheet(item: $selecteList, content: { list in
@@ -122,7 +170,8 @@ struct ContentView: View {
                                           link: list.link,
                                           isChecked: false,
                                           date: Date.now,
-                                          index: idx))
+                                          index: idx,
+                                          type: optionType))
         }
     }
     

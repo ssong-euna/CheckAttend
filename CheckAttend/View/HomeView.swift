@@ -14,8 +14,16 @@ struct HomeView: View {
     
     init() {
         let config = Realm.Configuration(
-            schemaVersion: 2,
-            migrationBlock: { _, _ in }
+            schemaVersion: 3,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 2 {
+                    // ✅ 이전 버전이 1이었고, 2로 올라가는 상황
+                    migration.enumerateObjects(ofType: ListRealmModel.className()) { oldObject, newObject in
+                        // 새로 추가한 age 필드에 기본값 세팅
+                        newObject?["type"] = Options.attend.rawValue
+                    }
+                }
+            }
         )
         Realm.Configuration.defaultConfiguration = config
     }
@@ -28,7 +36,7 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                ContentView(todayDate: $today, refreshId: $refreshId)
+                PickerView(todayDate: $today, refreshId: $refreshId)
             })
             .id(refreshId)
         })

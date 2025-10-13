@@ -11,10 +11,13 @@ final class ListViewModel: ObservableObject {
     @Published var saveLists: [AppList] = []
     @Published var serverLists: [AppList] = []
     
+    @Published var walkSaveLists: [AppList] = []
+    @Published var walkServerLists: [AppList] = []
+    
     func getSaveLists() {
         saveLists.removeAll()
         
-        if let objcs = RM.readListRealmModel() {
+        if let objcs = RM.readListRealmModel(type: .attend) {
             
             for objc in objcs {
                 var isChecked = objc.isChecked
@@ -23,7 +26,7 @@ final class ListViewModel: ObservableObject {
                 if let saveDate = objc.date,
                    !(Calendar.current.isDate(saveDate, inSameDayAs: Date())) {
                     isChecked = false
-                    RM.updateIsCheck(id: "\(objc.id)", isChecked: false)
+                    RM.updateIsCheck(id: "\(objc.id)", isChecked: false, type: .attend)
                 }
                 
                 // 변경된 link 대입
@@ -39,7 +42,7 @@ final class ListViewModel: ObservableObject {
             }
         }
     }
-
+    
     func getServerLists(completion: (() -> Void)? = nil) {
         // 서버 호출 또는 더미 데이터
         let lists = [
@@ -134,6 +137,67 @@ final class ListViewModel: ObservableObject {
                     isChecked: false)]
         
         serverLists = lists
+        completion?()
+    }
+    
+    func getWalkSaveLists() {
+        walkSaveLists.removeAll()
+        
+        if let objcs = RM.readListRealmModel(type: .walk) {
+            
+            for objc in objcs {
+                var isChecked = objc.isChecked
+                var link = objc.link
+                
+                if let saveDate = objc.date,
+                   !(Calendar.current.isDate(saveDate, inSameDayAs: Date())) {
+                    isChecked = false
+                    RM.updateIsCheck(id: "\(objc.id)", isChecked: false, type: .walk)
+                }
+                
+                // 변경된 link 대입
+                let mapLists = Dictionary(uniqueKeysWithValues: walkServerLists.map { ($0.title, $0.link) })
+                if let newLink = mapLists[objc.title] {
+                    link = newLink
+                }
+                
+                walkSaveLists.append(AppList(realmId: objc.id,
+                                             title: objc.title,
+                                             link: link,
+                                             isChecked: isChecked))
+            }
+        }
+    }
+    
+    func getWalkServerLists(completion: (() -> Void)? = nil) {
+        // 서버 호출 또는 더미 데이터
+        let lists = [
+            AppList(realmId: nil,
+                    title: "모니모",
+                    link: "monimoapp://adbrix?",
+                    isChecked: false),
+        
+            AppList(realmId: nil,
+                    title: "국민은행",
+                    link: "kbbank://",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "토스",
+                    link: "supertoss://",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "카카오뱅크",
+                    link: "kakaobank://open_url?type=event&title=%EC%9D%B4%EB%B2%A4%ED%8A%B8&url=https%3A%2F%2Fevent.kakaobank.com%2Fp%2Fox",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "카카오페이",
+                    link: "https://link.kakaopay.com/_/NY6a9yS",
+                    isChecked: false)]
+        
+        walkServerLists = lists
         completion?()
     }
 }
