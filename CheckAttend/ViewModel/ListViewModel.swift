@@ -48,7 +48,7 @@ final class ListViewModel: ObservableObject {
         let lists = [
             AppList(realmId: nil,
                     title: "홈플러스",
-                    link: "homeplus://webUrl?url=https://mfront.homeplus.co.kr/promotion/2025/11/attendance",
+                    link: "homeplus://webUrl?url=https://mfront.homeplus.co.kr/promotion/2025/12/attendance",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -58,7 +58,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "롯데면세점",
-                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1052027",
+                    link: "https://m.kor.lottedfs.com/kr/event/eventDetail?evtDispNo=1052135",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -68,7 +68,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "KT",
-                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1067",
+                    link: "ktmembershipsns://disptype=2&menutype=hot&name=8월%20출석체크&vendorcode=&linkurl=https%3A%2F%2Fapp.membership.kt.com%2Fmembershipv3%2Feventpage%2F1084",
                     isChecked: false),
             
             AppList(realmId: nil,
@@ -133,7 +133,7 @@ final class ListViewModel: ObservableObject {
             
             AppList(realmId: nil,
                     title: "신라면세점",
-                    link: "https://m.shilladfs.com/estore/kr/ko/event/eventView?eventId=E80134",
+                    link: "https://m.shilladfs.com/estore/kr/ko/event/eventView?eventId=E80539",
                     isChecked: false)]
         
         serverLists = lists
