@@ -7,6 +7,8 @@ target 'CheckAttend' do
 
   pod 'Realm', '10.49.2'
   pod 'RealmSwift', '10.49.2'
+  pod 'Alamofire', '5.9.1'
+  pod 'SwiftyJSON', '5.0.2'
 
   # Pods for CheckAttend
 

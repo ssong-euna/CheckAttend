@@ -20,6 +20,7 @@
 		CF0042D62E42FE2700AD169A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0042D52E42FE2700AD169A /* RealmManager.swift */; };
 		CF0042D82E43011800AD169A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF0042D72E43011800AD169A /* Constants.swift */; };
 		CF6B87882E49C4E100AD0E2B /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF6B87872E49C4E100AD0E2B /* manifest.plist */; };
+		CF7434CB2F0792BC00C2EFAD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7434CA2F0792BC00C2EFAD /* NetworkManager.swift */; };
 		CF9906BA2E43388B00B73F19 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906B92E43388400B73F19 /* Color+Extension.swift */; };
 		CF9906BE2E447C1900B73F19 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9906BD2E447C1900B73F19 /* WebView.swift */; };
 		CFC49BD92E9CB85600DA8B45 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC49BD82E9CB85600DA8B45 /* PickerView.swift */; };
@@ -45,6 +46,7 @@
 		CF0042D52E42FE2700AD169A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		CF0042D72E43011800AD169A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CF6B87872E49C4E100AD0E2B /* manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
+		CF7434CA2F0792BC00C2EFAD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CF9906B92E43388400B73F19 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		CF9906BD2E447C1900B73F19 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		CF9906BF2E448FD400B73F19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				CF0042D52E42FE2700AD169A /* RealmManager.swift */,
+				CF7434CA2F0792BC00C2EFAD /* NetworkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				CF0042D62E42FE2700AD169A /* RealmManager.swift in Sources */,
 				CF9906BE2E447C1900B73F19 /* WebView.swift in Sources */,
 				CF0042D22E42F2CE00AD169A /* ListViewModel.swift in Sources */,
+				CF7434CB2F0792BC00C2EFAD /* NetworkManager.swift in Sources */,
 				CFC49BD92E9CB85600DA8B45 /* PickerView.swift in Sources */,
 				CF0042D32E42F2CE00AD169A /* CheckAttendApp.swift in Sources */,
 			);
