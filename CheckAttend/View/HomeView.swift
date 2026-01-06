@@ -19,7 +19,7 @@ struct HomeView: View {
                 if oldSchemaVersion < 2 {
                     // ✅ 이전 버전이 1이었고, 2로 올라가는 상황
                     migration.enumerateObjects(ofType: ListRealmModel.className()) { oldObject, newObject in
-                        // 새로 추가한 age 필드에 기본값 세팅
+                        // 새로 추가한 type 필드에 기본값 세팅
                         newObject?["type"] = Options.attend.rawValue
                     }
                 }
