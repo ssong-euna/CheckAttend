@@ -93,4 +93,36 @@ final class ListViewModel: ObservableObject {
             }
         }
     }
+    
+    func getWalkServerLists(completion: (() -> Void)? = nil) {
+        // 서버 호출 또는 더미 데이터
+        let lists = [
+            AppList(realmId: nil,
+                    title: "모니모",
+                    link: "monimoapp://adbrix?",
+                    isChecked: false),
+        
+            AppList(realmId: nil,
+                    title: "국민은행",
+                    link: "kbbank://call?cmd=move_to&id=web&url=/mquics?page=D016793&urlparam=",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "토스",
+                    link: "supertoss://",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "카카오뱅크",
+                    link: "kakaobank://benefit?type=detail&bnf_id=86&af_deeplink=true&af_dp=kakaobank%3A%2F%2Fbenefit%3Ftype%3Ddetail%26bnf_id%3D86&af_xp=custom&shortlink=frfvcw7m&source_caller=ui",
+                    isChecked: false),
+            
+            AppList(realmId: nil,
+                    title: "카카오페이",
+                    link: "https://link.kakaopay.com/_/NY6a9yS",
+                    isChecked: false)]
+        
+        walkServerLists = lists
+        completion?()
+    }
 }
