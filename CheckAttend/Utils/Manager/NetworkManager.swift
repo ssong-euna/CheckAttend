@@ -9,6 +9,11 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 
+enum URL_TYPE: String {
+    case attend = "A"
+    case walk   = "W"
+}
+
 class NetworkManager: NSObject {
     static let shared = NetworkManager()
     private override init(){}    // 객체 생성 못하도록 막음. shared로만 사용.
@@ -132,10 +137,10 @@ class NetworkManager: NSObject {
         })
     }
     
-    func requestURLList(success: ((JSON) -> Void)? = nil, failure: ((AFError?, JSON?) -> Void)? = nil) {
+    func requestURLList(type: URL_TYPE, success: ((JSON) -> Void)? = nil, failure: ((AFError?, JSON?) -> Void)? = nil) {
         self.requestJSONData("http://3.39.21.123/api/public/sites",
                              method: .get,
-                             params: ["type": "A"],
+                             params: ["type": type.rawValue],
                              success: { json in
             print("requestURLList = \(json)")
             

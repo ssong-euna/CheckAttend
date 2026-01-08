@@ -136,11 +136,11 @@ struct ContentView: View {
                 AppListView(appLists: appLists, optionType: $optionType)
             })
         }).onAppear {
-            appLists.getServerLists(completion: {
+            appLists.getServerLists(type: .attend, completion: {
                 appLists.getSaveLists()
             })
             
-            appLists.getWalkServerLists(completion: {
+            appLists.getServerLists(type: .walk, completion: {
                 appLists.getWalkSaveLists()
             })
         }
